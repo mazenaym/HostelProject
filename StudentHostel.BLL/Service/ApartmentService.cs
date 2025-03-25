@@ -27,6 +27,10 @@ namespace StudentHostel.BLL.Service
         {
             _apartmentrepository.UpdateApartment(apartment);
         }
+        public void DeleteApartmentByOwnerId(Guid id)
+        {
+            _apartmentrepository.DeleteApartmentByOwnerId(id);
+        }
         public void DeleteApartment(int id)
         {
             _apartmentrepository.DeleteApartment(id);

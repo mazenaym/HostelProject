@@ -6,6 +6,7 @@ namespace StudentHostel.BLL.Repo.IRepo
     {
         void AddApartment(Apartment apartment);
         void DeleteApartment(int id);
+        void DeleteApartmentByOwnerId(Guid id);
         IEnumerable<Apartment> GetAllApartment();
         Apartment GetApartmentById(int id);
         void UpdateApartment(Apartment apartment);

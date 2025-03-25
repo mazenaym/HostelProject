@@ -96,12 +96,11 @@ namespace StudentHostelAPI.Controllers
             existingApartment.Title = !string.IsNullOrEmpty(updatedApartment.Title) ? updatedApartment.Title : existingApartment.Title;
             existingApartment.Address = !string.IsNullOrEmpty(updatedApartment.Address) ? updatedApartment.Address : existingApartment.Address;
             existingApartment.Description = !string.IsNullOrEmpty(updatedApartment.Description) ? updatedApartment.Description : existingApartment.Description;
-
             existingApartment.Num_Bed = updatedApartment.Num_Bed != 0 ? updatedApartment.Num_Bed : existingApartment.Num_Bed;
             existingApartment.Num_Room = updatedApartment.Num_Room != 0 ? updatedApartment.Num_Room : existingApartment.Num_Room;
             existingApartment.FloorNum = updatedApartment.FloorNum != 0 ? updatedApartment.FloorNum : existingApartment.FloorNum;
             existingApartment.Price = updatedApartment.Price != 0 ? updatedApartment.Price : existingApartment.Price;
-
+            existingApartment.IsRented = updatedApartment.IsRented;
             existingApartment.OwnerId = !string.IsNullOrEmpty(updatedApartment.OwnerId) ? updatedApartment.OwnerId : existingApartment.OwnerId;
             existingApartment.Apartment_Image = updatedApartment.Apartment_Image ?? existingApartment.Apartment_Image;
 

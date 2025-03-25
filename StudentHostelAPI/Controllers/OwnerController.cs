@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using StudentHostel.BLL.Service;
 using StudentHostel.BLL.Service.IService;
 using StudentHostel.DAL.Entites;
 
@@ -14,10 +15,12 @@ namespace StudentHostelAPI.Controllers
         
             private readonly IAppUserService _appUserService;
         private readonly UserManager<AppUser> _userManager;
-        public OwnerController(IAppUserService appUserService, UserManager<AppUser> usermanager)
+        private readonly IApartmentService _apartmentService;
+        public OwnerController(IAppUserService appUserService, UserManager<AppUser> usermanager , IApartmentService apartmentService)
             {
                 _appUserService = appUserService;
             _userManager = usermanager;
+            _apartmentService = apartmentService;
         }
         
         [HttpGet]
@@ -67,7 +70,19 @@ namespace StudentHostelAPI.Controllers
                 await _appUserService.DeleteAsync(id);
                 return NoContent();
             }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOwner(Guid id)
+        {
+            var existingOwner = await _appUserService.GetUserByIdAsync(id);
+
+            if (existingOwner == null)
+                return NotFound("Owner not found.");
+            _apartmentService.DeleteApartmentByOwnerId(id);
+
+            await _appUserService.DeleteAsync(id);
+            return NoContent();
         }
+    }
 
     }
 

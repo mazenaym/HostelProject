@@ -54,6 +54,16 @@ namespace StudentHostel.BLL.Repo
                 _context.SaveChanges();
             }
         }
+        public void DeleteApartmentByOwnerId(Guid id)
+        {
+            string stringId = id.ToString();
+            var apartments = _context.apartments.Where(a => a.OwnerId == stringId).ToList();
+            if (apartments.Any())
+            {
+                _context.apartments.RemoveRange(apartments);
+                _context.SaveChanges();
+            }
+        }
 
         // Delete a apartment by id
         public void DeleteApartment(int id)
